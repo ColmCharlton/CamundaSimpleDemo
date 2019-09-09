@@ -6,3 +6,4 @@
 *editJenkinsfile.groovy
 *target/
 *.groovy
+.idea/workspace.xml
