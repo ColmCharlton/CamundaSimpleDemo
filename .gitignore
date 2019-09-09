@@ -1,0 +1,8 @@
+*.idea
+*.iml
+*.idea/.name
+*.idea/workspace.xml
+*.target/
+*editJenkinsfile.groovy
+*target/
+*.groovy
