@@ -1,9 +1,9 @@
 *.idea
 *.iml
 *.idea/.name
-*.idea/workspace.xml
+*.idea/workspace
+*.idea
 *.target/
 *editJenkinsfile.groovy
 *target/
 *.groovy
-.idea/workspace.xml
