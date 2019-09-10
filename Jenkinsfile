@@ -4,6 +4,7 @@ pipeline {
         maven 'mvn3.6.1'
 
     }
+
     stages {
         stage('SCM') {
             steps {
