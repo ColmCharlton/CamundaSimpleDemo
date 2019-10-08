@@ -12,7 +12,7 @@ pipeline {
        }
        stage('Build and package maven project') {
            steps {
-               withMaven(maven: 'mvn3.6.1') {
+//               withMaven(maven: 'mvn3.6.1') {
                    sh 'mvn clean package'
 
                }
@@ -21,35 +21,35 @@ pipeline {
 
        stage('Static code analysis, PMD ') {
            steps {
-               withMaven(maven: 'mvn3.6.1') {
+//               withMaven(maven: 'mvn3.6.1') {
                    sh 'mvn jxr:jxr pmd:cpd'
                    sh 'mvn jxr:jxr pmd:pmd'
 
                }
            }
-       }
-       stage('Static code analysis, SonarQube ') {
-           steps {
-               withSonarQubeEnv('sonarqube') {
-                   // Optionally use a Maven environment you've configured already
-                   withMaven(maven: 'mvn3.6.1') {
-                       sh 'mvn -Dsonar.host.url=http://localhost:9005 sonar:sonar'
-//                        sh 'mvn clean package sonar:sonar'
-                   }
-               }
-
-           }
-       }
-
-       stage("Quality Gate") {
-           steps {
-               timeout(time: 1, unit: 'HOURS') {
-                   // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                   // true = set pipeline to UNSTABLE, false = don't
-                   waitForQualityGate abortPipeline: false
-               }
-           }
-       }
+//       }
+//       stage('Static code analysis, SonarQube ') {
+//           steps {
+//               withSonarQubeEnv('sonarqube') {
+//                   // Optionally use a Maven environment you've configured already
+//                   withMaven(maven: 'mvn3.6.1') {
+//                       sh 'mvn -Dsonar.host.url=http://localhost:9005 sonar:sonar'
+////                        sh 'mvn clean package sonar:sonar'
+//                   }
+//               }
+//
+//           }
+//       }
+//
+//       stage("Quality Gate") {
+//           steps {
+//               timeout(time: 1, unit: 'HOURS') {
+//                   // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+//                   // true = set pipeline to UNSTABLE, false = don't
+//                   waitForQualityGate abortPipeline: false
+//               }
+//           }
+//       }
        stage('Archival') {
            steps {
                publishHTML([allowMissing         : true,
@@ -85,7 +85,7 @@ pipeline {
                archiveArtifacts allowEmptyArchive: true, artifacts: '*.txt'
            }
        }
-   }
+//   }
    post {
        always {
            junit testResults: '**/target/surefire-reports/TEST-*.xml'
