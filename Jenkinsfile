@@ -17,7 +17,7 @@ pipeline {
 
                }
            }
-       }
+
 
        stage('Static code analysis, PMD ') {
            steps {
@@ -85,7 +85,7 @@ pipeline {
                archiveArtifacts allowEmptyArchive: true, artifacts: '*.txt'
            }
        }
-//   }
+   }
    post {
        always {
            junit testResults: '**/target/surefire-reports/TEST-*.xml'
